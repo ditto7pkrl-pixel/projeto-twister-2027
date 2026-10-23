@@ -1,0 +1,18 @@
+{
+  "name": "Projeto Twister 2027",
+  "short_name": "Twister 2027",
+  "description": "Metas e depósitos compartilhados de Ditto, Jm e Júlio.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f7",
+  "theme_color": "#101820",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

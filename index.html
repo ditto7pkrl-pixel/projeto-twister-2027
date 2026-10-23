@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Projeto Twister 2027: metas, depósitos e ranking semanal de Ditto, Jm e Júlio.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Projeto Twister 2027</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="logo">🏍️</div><div><strong>Projeto Twister 2027</strong><small>Ditto · Jm · Júlio</small></div></div>
+    <button id="logoutBtn" class="btn btn-quiet hidden">Sair</button>
+  </header>
+
+  <div class="project-banner"><img src="./assets/twister-banner.jpg" alt="Projeto Twister 2027 com as três motos Honda CB 300F Twister"></div>
+  <main>
+    <section id="loginView" class="login-wrap">
+      <div class="hero">
+        <p class="eyebrow">UM OBJETIVO · TRÊS PARTICIPANTES</p>
+        <h1>Construindo a meta,<br><span>depósito por depósito.</span></h1>
+        <p class="muted">Entre com a conta que foi cadastrada para você no projeto.</p>
+      </div>
+      <form id="loginForm" class="panel login-form">
+        <h2>Entrar no projeto</h2>
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="username" required placeholder="voce@exemplo.com">
+        <label for="password">Senha</label>
+        <input id="password" type="password" autocomplete="current-password" required placeholder="Sua senha">
+        <button class="btn btn-primary" type="submit">Entrar</button>
+        <p id="loginMessage" class="form-message" role="status"></p>
+        <p class="tiny muted">As contas são criadas pelo administrador no Firebase para limitar o acesso aos três participantes.</p>
+      </form>
+    </section>
+
+    <section id="appView" class="hidden">
+      <div class="welcome-row">
+        <div><p class="eyebrow">PAINEL DA EQUIPE</p><h1>Olá, <span id="myName">participante</span>.</h1><p class="muted">Cada um registra apenas os próprios depósitos.</p></div>
+        <div class="week-chip"><span class="dot"></span><span id="weekLabel">Semana atual</span></div>
+      </div>
+
+      <section class="stats-grid">
+        <article class="stat-card stat-dark"><span>Guardado pelo grupo</span><strong id="groupTotal">R$ 0,00</strong><small>Meta coletiva: R$ 33.000,00</small><div class="progress"><i id="groupProgress"></i></div></article>
+        <article class="stat-card"><span>Depositado nesta semana</span><strong id="weekTotal">R$ 0,00</strong><small>Soma dos três participantes</small></article>
+        <article class="stat-card"><span>Falta para a meta conjunta</span><strong id="groupRemaining">R$ 33.000,00</strong><small>R$ 11.000 por pessoa</small></article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Metas individuais</h2></div><span class="section-note">Meta: R$ 11.000 cada</span></div>
+        <div id="participantCards" class="participant-grid"></div>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel">
+          <div class="section-heading"><div><p class="eyebrow">NOVO REGISTRO</p><h2>Adicionar depósito</h2></div><span class="round-icon">＋</span></div>
+          <form id="depositForm" class="deposit-form">
+            <label for="amount">Valor depositado (R$)</label>
+            <input id="amount" type="number" min="0.01" step="0.01" required placeholder="Ex.: 100,00">
+            <label for="depositDate">Data do depósito</label>
+            <input id="depositDate" type="date" required>
+            <button class="btn btn-primary" type="submit">Registrar meu depósito</button>
+            <p id="depositMessage" class="form-message" role="status"></p>
+          </form>
+          <p class="tiny muted">A data vem preenchida com hoje, mas pode ser ajustada para registrar um depósito anterior. O horário de criação é salvo automaticamente.</p>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading"><div><p class="eyebrow">COMPETIÇÃO SAUDÁVEL</p><h2>Ranking semanal</h2></div><span class="round-icon">↗</span></div>
+          <p id="rankingDates" class="muted small"></p>
+          <div id="rankingList" class="ranking-list"></div>
+          <p class="tiny muted">O ranking considera o valor dos depósitos registrados na semana, não o saldo total guardado.</p>
+        </section>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><p class="eyebrow">REGISTROS</p><h2>Histórico de depósitos</h2><p class="muted">Você pode editar ou excluir somente os seus registros.</p></div>
+          <select id="historyFilter" aria-label="Filtrar histórico"><option value="all">Todos os participantes</option><option value="mine">Só meus depósitos</option><option value="Ditto">Ditto</option><option value="Jm">Jm</option><option value="Júlio">Júlio</option></select>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+      <p class="footer-note">Os dados são compartilhados em tempo real. Use os registros para acompanhar a economia; o app não movimenta dinheiro nem confirma transações bancárias.</p>
+    </section>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
